@@ -16,13 +16,7 @@ import { PrismaService } from './prisma.service';
             isGlobal: true,
         }),
     ],
-    providers: [
-        PrismaService,
-        ValidationService
-    ],
-    exports: [
-        PrismaService,
-        ValidationService
-    ],
+    providers: [PrismaService, ValidationService],
+    exports: [PrismaService, ValidationService],
 })
 export class CommonModule {}
