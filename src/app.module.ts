@@ -16,14 +16,21 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
+import { EdificesModule } from './edifices/edifices.module';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true, // Membuat config bisa diakses di semua module
     }),
+    CommonModule,
     AuthModule,
-    // ... module lainnya
+    EdificesModule,
+    ThrottlerModule.forRoot([{
+      ttl: 60,
+      limit: 10,
+    }])
   ],
   providers: [
     {
