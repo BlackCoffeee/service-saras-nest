@@ -16,6 +16,7 @@ import { PassportModule } from '@nestjs/passport';
 import { ConfigModule } from '@nestjs/config';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { BearerStrategy } from './strategies/bearer.strategy';
+import { CommonModule } from '../common/common.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { BearerStrategy } from './strategies/bearer.strategy';
       ttl: 60,
       limit: 10,
     }]),
+    CommonModule,
   ],
   providers: [BearerStrategy],
   exports: [PassportModule]
