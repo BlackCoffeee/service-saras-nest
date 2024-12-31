@@ -8,15 +8,15 @@
  * - Menangani berbagai kasus error dan logging
  */
 
-import { Injectable, UnauthorizedException, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-http-bearer';
-import { ConfigService } from '@nestjs/config';
 import axios, { AxiosError } from 'axios';
 import { SSOResponse, SSOUser } from '../interfaces/sso-user.interface';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
 import { Logger } from 'winston';
 import { Inject } from '@nestjs/common';
+import { AppConfigService } from '../../config/config.service';
 
 /**
  * BearerStrategy
@@ -26,7 +26,7 @@ import { Inject } from '@nestjs/common';
 @Injectable()
 export class BearerStrategy extends PassportStrategy(Strategy) {
   constructor(
-    private configService: ConfigService,
+    private config: AppConfigService,
     @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger
   ) {
     super();
@@ -41,14 +41,9 @@ export class BearerStrategy extends PassportStrategy(Strategy) {
    */
   async validate(token: string): Promise<SSOUser> {
     try {
-      const verifyTokenURL = this.configService.get<string>('OAUTH_VERIFY_TOKEN_URL');
+      const verifyTokenUrl = this.config.oauthVerifyTokenUrl;
       
-      if (!verifyTokenURL) {
-        this.logger.error('OAUTH_VERIFY_TOKEN_URL tidak dikonfigurasi');
-        throw new InternalServerErrorException('OAuth configuration error');
-      }
-
-      const response = await axios.get<SSOResponse>(verifyTokenURL, {
+      const response = await axios.get<SSOResponse>(verifyTokenUrl, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -58,11 +53,6 @@ export class BearerStrategy extends PassportStrategy(Strategy) {
         });
         throw new UnauthorizedException('Token tidak valid');
       }
-
-      this.logger.info('User berhasil diautentikasi', {
-        userId: response.data.data.id,
-        username: response.data.data.username
-      });
 
       return response.data.data;
 
@@ -76,7 +66,7 @@ export class BearerStrategy extends PassportStrategy(Strategy) {
       }
       
       this.logger.error('Gagal memverifikasi token', { error });
-      throw new InternalServerErrorException('Gagal memverifikasi token');
+      throw new UnauthorizedException('Gagal memverifikasi token');
     }
   }
 } 
