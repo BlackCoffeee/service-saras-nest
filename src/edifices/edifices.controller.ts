@@ -15,9 +15,9 @@ export class EdificesController {
     // @Public()
     @Get()
     @HttpCode(HttpStatus.OK)
-    async getAll(): Promise<WebResponse<EdificeResponse[]>> {
+    async getAll(@User() userInfo: SSOUser): Promise<WebResponse<EdificeResponse[]>> {
         const edifices = await this.edificeService.getAll();
-        // Logger.log('user info accessing edifices get all api', userInfo);
+        Logger.log('user info accessing edifices get all api', userInfo);
         return new WebResponse<EdificeResponse[]>(
             HttpStatus.OK,
             'Edifices fetched successfully',
