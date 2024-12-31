@@ -7,13 +7,8 @@ export interface SSOUser {
   id: string;
   /** Nama pengguna/username */
   username: string;
-  /** Alamat email pengguna (opsional) */
-  email?: string;
   /** Daftar peran/role yang dimiliki pengguna */
-  roles: string[];
-  /** Daftar izin/permission yang dimiliki pengguna (opsional) */
-  permissions?: string[];
-  // sesuaikan dengan response dari SSO Anda
+  roles: number;
 }
 
 /**
