@@ -7,7 +7,17 @@ export class ErrorFilter implements ExceptionFilter {
         const response = host.switchToHttp().getResponse();
 
         if(exception instanceof HttpException){
-            response.status(exception.getStatus()).json({
+            const status = exception.getStatus();
+            
+            // Handle unauthorized error (status 401)
+            if(status === 401) {
+                return response.status(401).json({
+                    error: "Unauthorized access",
+                    message: "You are not authorized to access this resource"
+                });
+            }
+
+            response.status(status).json({
                 error: exception.getResponse(),
             });
         }else if(exception instanceof ZodError){
