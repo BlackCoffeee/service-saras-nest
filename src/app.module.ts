@@ -12,32 +12,30 @@
  * - Mengatur rate limiting untuk mencegah request berlebihan
  */
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { AuthModule } from './auth/auth.module';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { EdificesModule } from './edifices/edifices.module';
 import { CommonModule } from './common/common.module';
+import { AuthModule } from './auth/auth.module';
+import { AppConfigModule } from './config/config.module';
 
 @Module({
-  imports: [
-    ConfigModule.forRoot({
-      isGlobal: true, // Membuat config bisa diakses di semua module
-    }),
-    CommonModule,
-    AuthModule,
-    EdificesModule,
-    ThrottlerModule.forRoot([{
-      ttl: 60,
-      limit: 10,
-    }])
-  ],
-  providers: [
-    {
-      provide: APP_GUARD,
-      useClass: ThrottlerGuard // Guard untuk rate limiting
-    }
-  ]
+    imports: [
+        AppConfigModule,
+        CommonModule,
+        AuthModule,
+        EdificesModule,
+        ThrottlerModule.forRoot([{
+            ttl: 60,
+            limit: 10,
+        }])
+    ],
+    providers: [
+        {
+            provide: APP_GUARD,
+            useClass: ThrottlerGuard
+        }
+    ]
 })
 export class AppModule {}
 
