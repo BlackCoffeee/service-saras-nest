@@ -16,7 +16,7 @@ import { SSOResponse, SSOUser } from '../interfaces/sso-user.interface';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
 import { Logger } from 'winston';
 import { Inject } from '@nestjs/common';
-import { AppConfigService } from '../../config/config.service';
+import { AppConfigService } from '../../../config/config.service';
 
 /**
  * BearerStrategy

@@ -1,11 +1,11 @@
 import { Controller, Get, Post, HttpCode, HttpStatus, Body, UseGuards, Logger } from '@nestjs/common';
 import { EdificesService } from './edifices.service';
-import { CreateEdificeRequest, EdificeResponse } from '../model/edifices.model';
-import { WebResponse } from '../model/web-response.model';
+import { CreateEdificeRequest, EdificeResponse } from '../../model/edifices.model';
+import { WebResponse } from '../../model/web-response.model';
 import { BearerAuthGuard } from '../auth/guards/bearer-auth.guard';
-import { User } from 'src/auth/decorators/user.decorator';
-import { SSOUser } from 'src/auth/interfaces/sso-user.interface';
-import { Public } from 'src/auth/decorators/public.decorator';
+import { User } from 'src/modules/auth/decorators/user.decorator';
+import { SSOUser } from 'src/modules/auth/interfaces/sso-user.interface';
+import { Public } from 'src/modules/auth/decorators/public.decorator';
 
 @Controller('datamaster/edifices')
 @UseGuards(BearerAuthGuard)

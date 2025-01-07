@@ -14,9 +14,9 @@
 import { Module } from '@nestjs/common';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
-import { EdificesModule } from './edifices/edifices.module';
+import { EdificesModule } from './modules/edifices/edifices.module';
 import { CommonModule } from './common/common.module';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './modules/auth/auth.module';
 import { AppConfigModule } from './config/config.module';
 
 @Module({

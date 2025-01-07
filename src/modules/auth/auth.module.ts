@@ -16,7 +16,7 @@ import { PassportModule } from '@nestjs/passport';
 import { ConfigModule } from '@nestjs/config';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { BearerStrategy } from './strategies/bearer.strategy';
-import { AppConfigModule } from '../config/config.module';
+import { AppConfigModule } from '../../config/config.module';
 
 @Module({
   imports: [
