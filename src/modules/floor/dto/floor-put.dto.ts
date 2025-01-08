@@ -16,25 +16,22 @@ export class FloorPutDto {
      * Nama lantai
      * @property {string} floorName - Nama lantai, wajib diisi, maksimal 50 karakter
      */
-    @IsNotEmpty()
+
     @IsString()
-    @MaxLength(50)
     floorName: string;
 
     /**
      * Deskripsi lantai (opsional)
      * @property {string} floorDesc - Deskripsi lantai, maksimal 255 karakter
      */
-    @IsOptional()
+
     @IsString()
-    @MaxLength(255)
     floorDesc?: string;
 
     /**
      * Status lantai (aktif/tidak aktif)
      * @property {boolean} floorStatus - Status lantai, wajib diisi
      */
-    @IsNotEmpty()
     @IsBoolean()
     floorStatus: boolean;
 }
