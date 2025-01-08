@@ -18,6 +18,7 @@ import { EdificesModule } from './modules/edifices/edifices.module';
 import { CommonModule } from './common/common.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { AppConfigModule } from './config/config.module';
+import { FloorModule } from '@modules/floor/floor.module';
 
 @Module({
     imports: [
@@ -25,6 +26,7 @@ import { AppConfigModule } from './config/config.module';
         CommonModule,
         AuthModule,
         EdificesModule,
+        FloorModule,
         ThrottlerModule.forRoot([{
             ttl: 60,
             limit: 10,
