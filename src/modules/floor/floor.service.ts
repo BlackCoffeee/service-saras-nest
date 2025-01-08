@@ -26,6 +26,7 @@ export class FloorService implements IFloorService {
      * @param {Logger} logger - Logger untuk pencatatan aktivitas
      */
     constructor(
+        @Inject('IFloorRepository')
         private readonly floorRepository: IFloorRepository,
         private readonly validationService: ValidationService,
         @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger,
