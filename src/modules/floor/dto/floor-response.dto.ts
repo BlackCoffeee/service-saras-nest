@@ -32,7 +32,7 @@ export class FloorResponseDto {
     floorName: string;
 
     @Expose()
-    floorDesc: string;
+    floorDesc?: string;
 
     @Expose()
     floorStatus: boolean;
@@ -44,7 +44,7 @@ export class FloorResponseDto {
     updatedAt: Date;
 
     @Expose()
-    deletedAt: Date;
+    deletedAt?: Date;
 
     /**
      * Constructor untuk membuat instance FloorResponseDto

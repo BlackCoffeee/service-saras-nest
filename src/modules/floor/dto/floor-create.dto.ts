@@ -9,32 +9,27 @@
  * @createdAt 2024-01-01
  */
 
-import { IsNotEmpty, IsOptional, IsString, MaxLength, IsBoolean } from "class-validator";
+import { IsString, IsBoolean } from "class-validator";
 
 export class FloorCreateDto {
     /**
      * Nama lantai
      * @property {string} floorName - Nama lantai, maksimal 50 karakter
      */
-    @IsNotEmpty()
     @IsString()
-    @MaxLength(50)
     floorName: string;
 
     /**
      * Deskripsi lantai (opsional)
      * @property {string} floorDesc - Deskripsi lantai, maksimal 255 karakter
      */
-    @IsOptional()
     @IsString()
-    @MaxLength(255)
-    floorDesc: string;
+    floorDesc?: string;
 
     /**
      * Status lantai (aktif/tidak aktif)
      * @property {boolean} floorStatus - Status lantai
      */
-    @IsNotEmpty()
     @IsBoolean()
     floorStatus: boolean;
 }

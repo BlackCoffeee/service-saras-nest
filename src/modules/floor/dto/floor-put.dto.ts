@@ -28,7 +28,7 @@ export class FloorPutDto {
     @IsOptional()
     @IsString()
     @MaxLength(255)
-    floorDesc: string;
+    floorDesc?: string;
 
     /**
      * Status lantai (aktif/tidak aktif)

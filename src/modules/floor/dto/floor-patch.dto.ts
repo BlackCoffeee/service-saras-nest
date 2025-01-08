@@ -20,7 +20,7 @@ export class FloorPatchDto {
     @IsOptional()
     @IsString()
     @MaxLength(50)
-    floorName: string;
+    floorName?: string;
 
     /**
      * Deskripsi lantai (opsional)
@@ -29,7 +29,7 @@ export class FloorPatchDto {
     @IsOptional()
     @IsString()
     @MaxLength(255)
-    floorDesc: string;
+    floorDesc?: string;
 
     /**
      * Status lantai (opsional)
@@ -37,5 +37,5 @@ export class FloorPatchDto {
      */
     @IsOptional()
     @IsBoolean()
-    floorStatus: boolean;
+    floorStatus?: boolean;
 }
