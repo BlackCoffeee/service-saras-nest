@@ -91,7 +91,7 @@ export interface IFloorService extends IFloor {
  * @interface IFloorRepository
  * @extends {IFloor}
  */
-export interface IFloorRepository extends IFloor {
+export interface IFloorRepository {
     /**
      * Membuat data lantai baru di database
      * @param {FloorCreateDto} data - Data lantai yang akan dibuat
