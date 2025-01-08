@@ -33,7 +33,7 @@ export interface IFloor {
  * @interface IFloorService
  * @extends {IFloor}
  */
-export interface IFloorService extends IFloor {
+export interface IFloorService {
     /**
      * Membuat data lantai baru
      * @param {FloorCreateDto} data - Data lantai yang akan dibuat
