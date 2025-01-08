@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Put, UseGuards } from "@nestjs/common";
-import { FloorService } from "@modules/floor/floor.service";
-import { BearerAuthGuard } from "@modules/auth/guards/bearer-auth.guard";
+import { FloorService } from "./floor.service";
+import { BearerAuthGuard } from "../auth/guards/bearer-auth.guard";
 import { FloorCreateDto, FloorPatchDto, FloorPutDto, FloorResponseDto } from "./dto";
-import { WebResponse } from "src/model/web-response.model";
+import { WebResponse } from "../../model/web-response.model";
 
 @Controller('floor')
 @UseGuards(BearerAuthGuard)
