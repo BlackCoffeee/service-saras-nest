@@ -7,3 +7,4 @@ export class ValidationService {
         return zodType.parse(data);
     }
 }
+

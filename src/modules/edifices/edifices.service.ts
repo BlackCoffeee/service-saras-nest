@@ -2,9 +2,9 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston'; // Import untuk logging
 import { Logger } from 'winston'; // Import logger
-import { PrismaService } from '../common/prisma.service'; // Import service Prisma untuk akses database
-import { CreateEdificeRequest, EdificeResponse } from '../model/edifices.model'; // Import model/interface
-import { ValidationService } from '../common/validation.service'; // Import service validasi
+import { PrismaService } from '../../common/prisma.service'; // Import service Prisma untuk akses database
+import { CreateEdificeRequest, EdificeResponse } from '../../model/edifices.model'; // Import model/interface
+import { ValidationService } from '../../common/validation.service'; // Import service validasi
 import { EdificesValidation } from './edifices.validation'; // Import skema validasi
 
 // Dekorator Injectable menandakan bahwa class ini adalah service yang bisa di-inject

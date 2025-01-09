@@ -1,16 +1,23 @@
-import { Controller, Get, Post, HttpCode, HttpStatus, Body } from '@nestjs/common';
+import { Controller, Get, Post, HttpCode, HttpStatus, Body, UseGuards, Logger } from '@nestjs/common';
 import { EdificesService } from './edifices.service';
-import { CreateEdificeRequest, EdificeResponse } from '../model/edifices.model';
-import { WebResponse } from '../model/web-response.model';
+import { CreateEdificeRequest, EdificeResponse } from '../../model/edifices.model';
+import { WebResponse } from '../../model/web-response.model';
+import { BearerAuthGuard } from '../auth/guards/bearer-auth.guard';
+import { User } from 'src/modules/auth/decorators/user.decorator';
+import { SSOUser } from 'src/modules/auth/interfaces/sso-user.interface';
+import { Public } from 'src/modules/auth/decorators/public.decorator';
 
-@Controller('api/datamaster/edifices')
+@Controller('datamaster/edifices')
+@UseGuards(BearerAuthGuard)
 export class EdificesController {
     constructor(private edificeService: EdificesService) {}
 
+    // @Public()
     @Get()
     @HttpCode(HttpStatus.OK)
-    async getAll(): Promise<WebResponse<EdificeResponse[]>> {
+    async getAll(@User() userInfo: SSOUser): Promise<WebResponse<EdificeResponse[]>> {
         const edifices = await this.edificeService.getAll();
+        Logger.log('user info accessing edifices get all api', userInfo);
         return new WebResponse<EdificeResponse[]>(
             HttpStatus.OK,
             'Edifices fetched successfully',
